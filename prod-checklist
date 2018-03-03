@@ -1,0 +1,33 @@
+~~ test fonctionnel ~~
+
+- L'exécution se passe-t-elle sans erreurs ni warnings ? /!\ test à faire dans le contexte d'éxécution de prod : sur le serveur de prod, même user, même env (notamement $PATH) /!\
+- Le comportement est il strictement celui attendu par le client ?
+
+~~ dépendances ~~
+
+- Mon script utilise-t-il des librairies particulières ? Sont elles installés en prod ?
+- Ces dépendances sont elles explicitées en commentaires dans le script ?
+
+~~ clarté du code ~~
+
+- L'algorithme du script est il décomposé et clair ? Le client pourra-t-il le comprendre sans difficulté ?
+- Les noms de variables et de fonctions sont ils explicites et en anglais ?
+- Le script est-il documenté, et en anglais ? (RAPPEL: un commentaire dit pourquoi, pas comment)
+
+~~ configuration ~~
+
+- La configuration est elle située dans un fichier externe ?
+- Le fichier de configuration est-il en mode "rw", uniquement pour l'owner du script ? (pas d'accès en lecture au fichier pour tous le monde s'il contient des user/pass ou autre infos sensible)
+- La configuration est-elle en mode production, et non en mode "environnement de test" ?
+
+~~ entrées et sorties ~~
+
+- Toutes les entrées sont elles gérées (présence ET absence) ?
+- Les entrées du SI du client sont elles identiques à celles utilisées lors des tests ?
+- Les sorties sont elles bien cohérentes et adaptées ? (différents contextes: cron, services...)
+- les codes retours sont ils définis et documentés ?
+
+~~ debug ~~
+
+- Si le script bug, ai-je un mode verbose/debug me permettant de savoir immédiatement ce qui ne va pas ?
+- Ai-je sous les yeux ou en tête la procédure de rollback en cas de défaillance ? Si la mise en production altère des données (schéma/données DB ou LDAP par exemple), prévoir un script de rollback pour ces altérations.
